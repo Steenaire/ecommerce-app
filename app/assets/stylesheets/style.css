@@ -15,3 +15,7 @@ img {
 .product-row {
   height: 375px;
 }
+
+h1 {
+  padding: 20px;
+}
