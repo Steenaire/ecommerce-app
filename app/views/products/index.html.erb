@@ -1,4 +1,4 @@
-<table>
+<!-- <table class="table table-hover">
   <tr>
     <th>Image</th>
     <th>Product Name</th>
@@ -11,9 +11,25 @@
     <tr>
       <td><%= image_tag(product.image) %></td>
       <td><%= product.name %></td>
+      <td>$<%= product.price %></td>
       <td><%= product.description %></td>
       <td><%= product.quantity %></td>
       <td><%= product.category %></td>
     </tr>
   <% end %>
-</table>
+</table> -->
+<h1>Products</h1>
+<div class="container-fluid">
+  <div class="row product-row">
+    <% @products.each do |product| %>
+      <div class="col-md-3 product-cell">
+          <%= image_tag(product.image) %>
+          <p><%= product.name %></p>
+          <p>Price: $<%= product.price %></p>
+          <p>Description: <%= product.description %></p>
+          <p>Quantity: <%= product.quantity %></p>
+          <p>Category: <%= product.category %></p>
+      </div>
+    <% end %>
+  </div>
+</div>

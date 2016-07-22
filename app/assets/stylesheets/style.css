@@ -1,3 +1,16 @@
 img {
   height: 75px;
 }
+
+.product-cell:hover {
+  background-color: grey;
+}
+
+.product-cell {
+  height: 300px;
+  padding: 20px;
+}
+
+.product-row {
+  height: 325px;
+}
