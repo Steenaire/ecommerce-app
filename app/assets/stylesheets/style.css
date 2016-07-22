@@ -7,10 +7,11 @@ img {
 }
 
 .product-cell {
-  height: 300px;
+  height: 350px;
   padding: 20px;
+  border: 1px dashed black;
 }
 
 .product-row {
-  height: 325px;
+  height: 375px;
 }
