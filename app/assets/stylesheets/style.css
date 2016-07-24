@@ -12,6 +12,11 @@ img {
   border: 1px dashed black;
 }
 
+.show {
+  padding: 20px;
+  margin: 50px;
+}
+
 .product-row {
   height: 375px;
 }
