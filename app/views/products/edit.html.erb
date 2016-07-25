@@ -1,0 +1,42 @@
+<h1>Edit Product</h1>
+<p><%= @product.name %></p>
+<p>$<%= @product.price %></p>
+<p><%= @product.description %></p>
+<p><%= @product.image %></p>
+<p><%= @product.quantity %></p>
+<p><%= @product.category %></p>
+
+<%= form_tag "/products/#{@id}", method: :patch do %>
+  <div>
+    <%= label_tag :name %>
+    <%= text_field_tag :name %>
+  </div>
+  <div>
+    <%= label_tag :price %>
+    <%= text_field_tag :price %>
+  </div>
+  <div>
+    <%= label_tag :description %>
+    <%= text_field_tag :description %>
+  </div>
+  <div>
+    <%= label_tag :image, "Image URL" %>
+    <%= text_field_tag :image %>
+  </div>
+  <div>
+    <%= label_tag :quantity %>
+    <%= text_field_tag :quantity %>
+  </div>
+  <div>
+    <%= label_tag :category %>
+    <%= text_field_tag :category %>
+  </div>
+  <div>
+    <%= submit_tag "Update Product" %>
+  </div>
+<% end %>
+<a href="/products/<%= @product.id %>">
+<button class="show">
+Return This Product (Don't Update)
+</button>
+</a>
