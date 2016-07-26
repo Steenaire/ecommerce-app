@@ -23,6 +23,8 @@ class ProductsController < ApplicationController
       name: @name, price: @price, description: @description, image: @image, quantity: @quantity, category: @category
       })
     product.save
+
+    redirect_to "/products/#{product.id}"
   end
 
   def update
@@ -43,6 +45,8 @@ class ProductsController < ApplicationController
     product.quantity = @quantity
     product.category = @category
     product.save
+
+    redirect_to "/products/#{@id}"
   end
 
   def edit
