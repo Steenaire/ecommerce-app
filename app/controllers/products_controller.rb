@@ -24,7 +24,7 @@ class ProductsController < ApplicationController
       })
     product.save
 
-    flash[:message] = "Product Created!"
+    flash[:success] = "Product Created!"
 
     redirect_to "/products/#{product.id}"
   end
@@ -48,7 +48,7 @@ class ProductsController < ApplicationController
     product.category = @category
     product.save
 
-    flash[:message] = "Product Updated!"
+    flash[:success] = "Product Updated!"
 
     redirect_to "/products/#{@id}"
   end
@@ -61,8 +61,8 @@ class ProductsController < ApplicationController
   def destroy
     Product.find_by(id: params[:id]).destroy
 
-    flash[:message] = "Product Deleted!"
-    
+    flash[:warning] = "Product Deleted!"
+
     redirect_to "/products/"
   end
 
