@@ -32,6 +32,7 @@ class ProductsController < ApplicationController
     @image = params[:image]
     @quantity = params[:quantity]
     @category = params[:category]
+    @id = params[:id]
 
     product = Product.find(params[:id])
 
