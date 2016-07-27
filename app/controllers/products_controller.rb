@@ -30,22 +30,16 @@ class ProductsController < ApplicationController
   end
 
   def update
-    @name = params[:name]
-    @price = params[:price]
-    @description = params[:description]
-    @image = params[:image]
-    @quantity = params[:quantity]
-    @category = params[:category]
     @id = params[:id]
 
     product = Product.find(params[:id])
 
-    product.name = @name
-    product.price = @price
-    product.description = @description
-    product.image = @image
-    product.quantity = @quantity
-    product.category = @category
+    product.name = params[:name]
+    product.price = params[:price]
+    product.description = params[:description]
+    product.image = params[:image]
+    product.quantity = params[:quantity]
+    product.category = params[:category]
     product.save
 
     flash[:success] = "Product Updated!"

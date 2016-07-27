@@ -35,9 +35,31 @@
     <%= submit_tag "Delete Product" %>
   <% end %>
 
+    <%= form_for @product, url: "/products/#{@id}" do |f| %>
+      <%= f.label :name %>:
+      <%= f.text_field :name %><br />
+
+      <%= f.label :price %>:
+      <%= f.text_field :price %><br />
+
+      <%= f.label :description %>:
+      <%= f.text_field :description %><br />
+
+      <%= f.label :image %>:
+      <%= f.text_field :image %><br />
+
+      <%= f.label :quantity %>:
+      <%= f.text_field :quantity %><br />
+
+      <%= f.label :category %>:
+      <%= f.text_field :category %><br />
+
+      <%= f.submit %>
+    <% end %>
+
   <a href="/products/<%= @product.id %>">
   <button class="show">
-  Return This Product (Don't Update)
+  Return to This Product (Don't Update)
   </button>
   </a>
 </div>

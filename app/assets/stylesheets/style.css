@@ -8,7 +8,7 @@ img {
 }
 
 .product-cell:hover {
-  background-color: grey;
+  background-color: #449AAD;
   opacity: 1;
 }
 
