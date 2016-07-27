@@ -9,42 +9,29 @@ class ProductsController < ApplicationController
   end
 
   def new
+    @product =  Product.new
   end
 
   def create
-    @name = params[:name]
-    @price = params[:price]
-    @description = params[:description]
-    @image = params[:image]
-    @quantity = params[:quantity]
-    @category = params[:category]
+    @product = Product.new(product_params)
 
-    product = Product.new({
-      name: @name, price: @price, description: @description, image: @image, quantity: @quantity, category: @category
-      })
-    product.save
-
-    flash[:success] = "Product Created!"
-
-    redirect_to "/products/#{product.id}"
+    if @product.save
+      flash[:success] = "Product Created!"
+      redirect_to "/products/#{@product.id}"
+    else
+      render 'new'
+    end
   end
 
   def update
-    @id = params[:id]
-
-    product = Product.find(params[:id])
-
-    product.name = params[:name]
-    product.price = params[:price]
-    product.description = params[:description]
-    product.image = params[:image]
-    product.quantity = params[:quantity]
-    product.category = params[:category]
-    product.save
-
-    flash[:success] = "Product Updated!"
-
-    redirect_to "/products/#{@id}"
+    @product = Product.find(params[:id])
+    Product.update(@product.id, product_params)
+    if @product.save
+      flash[:success] = "Product Updated!"
+      redirect_to "/products/#{@product.id}"
+    else
+      render 'edit'
+    end
   end
 
   def edit
@@ -59,5 +46,11 @@ class ProductsController < ApplicationController
 
     redirect_to "/products/"
   end
+
+  private
+
+    def product_params
+      params.require(:product).permit(:name, :price, :description, :image, :quantity, :category)
+    end
 
 end
