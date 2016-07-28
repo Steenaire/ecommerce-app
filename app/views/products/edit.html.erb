@@ -27,6 +27,10 @@
       <%= text_field_tag :category, @product.category, class: "form-control" %>
     </div>
     <div class="form-group">
+      <%= label_tag :status %>
+      <%= text_field_tag :status, @product.status, class: "form-control" %>
+    </div>
+    <div class="form-group">
       <%= submit_tag "Update Product" %>
     </div>
   <% end %>
