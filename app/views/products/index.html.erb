@@ -31,7 +31,7 @@
             <% else %>
               <p class>
             <% end %>
-            Price: $<%= product.price %></p>
+            Price: <%= number_to_currency(product.price) %></p>
             <p>Description: <%= product.description %></p>
             <p>Quantity: <%= product.quantity %></p>
             <p>Category: <%= product.category %></p>

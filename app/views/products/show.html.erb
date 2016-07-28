@@ -7,13 +7,13 @@
   <% else %>
     <p class>
   <% end %>
-  Price: $<%= @product.price %></p>
-  <p>Tax: $<%= @product.tax %></p>
-  <p>Total: $<%= @product.total %></p>
+  Price: <%= number_to_currency(@product.price) %></p>
+  <p>Tax: <%= number_to_currency(@product.tax) %></p>
+  <p>Total: <%= number_to_currency(@product.total) %></p>
   <p>Description: <%= @product.description %></p>
   <p>Quantity: <%= @product.quantity %></p>
   <p>Category: <%= @product.category %></p>
-  <p><%= @product.status %></p>
+  <p><%= @product.available %></p>
 </div>
 <br>
 <a href="/products">
