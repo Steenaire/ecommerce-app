@@ -12,17 +12,15 @@ class ProductsController < ApplicationController
   end
 
   def create
-    @name = params[:name]
-    @price = params[:price]
-    @description = params[:description]
-    @image = params[:image]
-    @quantity = params[:quantity]
-    @category = params[:category]
-    @status = params[:status]
-
     product = Product.new({
-      name: @name, price: @price, description: @description, image: @image, quantity: @quantity,
-      category: @category, status: @status })
+      name: params[:name],
+      price: params[:price],
+      description: params[:description],
+      image: params[:image],
+      quantity: params[:quantity],
+      category: params[:category],
+      available: params[:available]
+      })
     product.save
 
     flash[:success] = "Product Created!"
@@ -41,7 +39,7 @@ class ProductsController < ApplicationController
     product.image = params[:image]
     product.quantity = params[:quantity]
     product.category = params[:category]
-    product.status = params[:status]
+    product.available = params[:available]
     product.save
 
     flash[:success] = "Product Updated!"

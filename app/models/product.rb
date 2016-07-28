@@ -16,4 +16,13 @@ class Product < ApplicationRecord
     (price + self.tax)
   end
 
+  def availability
+    puts available
+    if available
+      return "In-Stock!"
+    else
+      return "Out of Stock"
+    end
+  end
+
 end
