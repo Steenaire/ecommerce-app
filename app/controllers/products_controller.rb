@@ -27,8 +27,6 @@ class ProductsController < ApplicationController
   end
 
   def create
-    @product = Product.find(params[:id])
-
     product = Product.new({
       name: params[:name],
       price: params[:price],

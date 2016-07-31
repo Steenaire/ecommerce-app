@@ -11,4 +11,10 @@ Rails.application.routes.draw do
   post '/products/search', to: 'products#search'
 
   get '/suppliers', to: 'suppliers#index'
+  get '/suppliers/new', to: 'suppliers#new'
+  post '/suppliers', to: 'suppliers#create'
+  get '/suppliers/:id', to: 'suppliers#show'
+  get '/suppliers/:id/edit', to: 'suppliers#edit'
+  patch '/suppliers/:id', to: 'suppliers#update'
+  delete '/suppliers/:id', to: 'suppliers#destroy'
 end

@@ -1,11 +1,13 @@
 <h1>Suppliers</h1>
 <div class="container">
   <div class="row product-row">
+    <ul>
     <% @suppliers.each do |supplier| %>
-        <div class="col-md-3 product-cell">
-            <p><%= supplier.name %></p>
-        </div>
+        <li>
+          <%= supplier.name %>
+        </li>
       </a>
     <% end %>
+    </ul>
   </div>
 </div>
