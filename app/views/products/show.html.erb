@@ -19,7 +19,7 @@
 <div class="gallery">
 <h3>Product Images:</h3>
 <% @product.images.each do |image| %>
-  <img src= <%= image.url %> />
+  <a href="<%= image.url %>"><img src= <%= image.url %> /></a>
 <% end %>
 <br>
 <a href="/products">
