@@ -1,6 +1,10 @@
 <div class="col-md-12 show">
   <p><%= @product.sale_message %></p>
-  <img src= <%= @product.images.first.url %> />
+  <% if @product.images.any? %>
+    <img src= <%= @product.images.first.url %> />
+  <% else %>
+    <img src= "http://130.211.52.161/tradeo-content/themes/nucleare-pro/images/no-image-box.png" />
+  <% end %>
   <p><%= @product.name %></p>
   <% if @product.sale_message == "Discount item!" %>
     <p class="discount">
@@ -16,10 +20,13 @@
   <p>Supplier: <%= @product.supplier.name %></p>
   <p><%= @product.availability %></p>
 </div>
+
 <div class="gallery">
 <h3>Product Images:</h3>
-<% @product.images.each do |image| %>
-  <a href="<%= image.url %>"><img src= <%= image.url %> /></a>
+<% if @product.images.any? %>
+  <% @product.images.each do |image| %>
+    <a href="<%= image.url %>"><img src= <%= image.url %> /></a>
+  <% end %>
 <% end %>
 <br>
 <a href="/products">

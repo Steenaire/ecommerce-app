@@ -31,6 +31,8 @@ class ProductsController < ApplicationController
     @product = Product.new(product_params)
 
     if @product.save
+      # image = Image.new(product_id: product.id, url: image_url)
+      # image.save
       flash[:success] = "Product Created!"
       redirect_to "/products/#{@product.id}"
     else
