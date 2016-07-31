@@ -5,6 +5,10 @@
     <% @suppliers.each do |supplier| %>
         <li>
           <%= supplier.name %>
+          <ul>
+            <li><%= supplier.email %></li>
+            <li><%= supplier.phone %></li>
+          </ul>
         </li>
       </a>
     <% end %>

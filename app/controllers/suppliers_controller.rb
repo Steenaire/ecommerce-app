@@ -8,47 +8,47 @@ class SuppliersController < ApplicationController
     @product = Product.find(params[:id])
   end
 
-  def new
-  end
+  # def new
+  # end
 
-  def create
-    supplier = Supplier.new({
-      name: params[:name]
-      email: params[:email]
-      phone: params[:phone]
-      })
-    product.save
+  # def create
+  #   supplier = Supplier.new({
+  #     name: params[:name]
+  #     email: params[:email]
+  #     phone: params[:phone]
+  #     })
+  #   product.save
 
-    flash[:success] = "Suuplier Created!"
+  #   flash[:success] = "Suuplier Created!"
 
-    redirect_to "/suppliers/#{supplier.id}"
-  end
+  #   redirect_to "/suppliers/#{supplier.id}"
+  # end
 
-  def edit
-    @supplier = Supplier.find(params[:id])
-  end
+  # def edit
+  #   @supplier = Supplier.find(params[:id])
+  # end
 
-  def update
+  # def update
 
-    supplier = Supplier.find(params[:id])
+  #   supplier = Supplier.find(params[:id])
 
-    supplier.name = params[:name]
-    supplier.email = params[:email]
-    supplier.phone = params[:phone]
+  #   supplier.name = params[:name]
+  #   supplier.email = params[:email]
+  #   supplier.phone = params[:phone]
 
-    product.save
+  #   product.save
 
-    flash[:success] = "Supplier Updated!"
+  #   flash[:success] = "Supplier Updated!"
 
-    redirect_to "/suppliers/#{@id}"
-  end
+  #   redirect_to "/suppliers/#{@id}"
+  # end
 
-  def destroy
-    Supplier.find_by(id: params[:id]).destroy
+  # def destroy
+  #   Supplier.find_by(id: params[:id]).destroy
 
-    flash[:warning] = "Supplier Deleted!"
+  #   flash[:warning] = "Supplier Deleted!"
 
-    redirect_to "/suppliers/"
-  end
+  #   redirect_to "/suppliers/"
+  # end
 
 end
