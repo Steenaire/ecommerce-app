@@ -1,26 +1,23 @@
 class ProductsController < ApplicationController
 
   def index
-    sort_attribute = params[:sort_attribute]
-    if sort_attribute
-      @products = Product.order(sort_attribute)
-    else
-      @products = Product.all
-    end
-
-    if params[:search]
+    if params[:sort_attribute]
+      @products = Product.order(price: params[:sort_attribute])
+    elsif params[:search]
       @products = Product.search(params[:search])
+    elsif params[:discount]
+      @products = Product.where("price < ?", 15)
     else
       @products = Product.all
     end
-
-    @random_product = @products.sample
   end
 
   def show
-    @product = Product.find(params[:id])
-    @products = Product.all
-    @random_product = @products.sample
+    if params[:id] == "random"
+      @product = Product.all.sample
+    else
+      @product = Product.find(params[:id])
+    end
   end
 
   def new
@@ -28,8 +25,6 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.find(params[:id])
-    @products = Product.all
-    @random_product = @products.sample
 
     product = Product.new({
       name: params[:name],
@@ -48,10 +43,6 @@ class ProductsController < ApplicationController
   end
 
   def update
-
-    @product = Product.find(params[:id])
-    @products = Product.all
-    @random_product = @products.sample
 
     @id = params[:id]
 
@@ -74,10 +65,6 @@ class ProductsController < ApplicationController
   def edit
     @id = params[:id]
     @product = Product.find(@id)
-
-    @product = Product.find(params[:id])
-    @products = Product.all
-    @random_product = @products.sample
   end
 
   def destroy
@@ -89,8 +76,6 @@ class ProductsController < ApplicationController
   end
 
   def search
-    @products = Product.all
-    @random_product = @products.sample
 
     if params[:search]
       @products = Product.search(params[:search])
