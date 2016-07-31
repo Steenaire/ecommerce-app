@@ -79,14 +79,8 @@ class ProductsController < ApplicationController
   end
 
   def search
-
-    if params[:search]
-      @products = Product.search(params[:search])
-      redirect_to '/products/search'
-    else
-      @products = Product.all
-    end
-
+    # @products = Product.where("name ILIKE ? OR description ILIKE ? OR category ILIKE ?", "%#{search}%", "%#{search}%", "%#{search}%") 
+    # render :index
   end
 
 end

@@ -26,7 +26,7 @@ class Product < ApplicationRecord
   end
 
   def self.search(search)
-    where("name ILIKE ? OR description ILIKE ? OR category ILIKE ?", "%#{search}%", "%#{search}%", "%#{search}%") 
+    where("lower(name) LIKE ? OR lower(description) ILIKE ? OR lower(category) ILIKE ?", "%#{search.downcase}%", "%#{search.downcase}%", "%#{search.downcase}%") 
   end
 
 end
