@@ -31,7 +31,6 @@ class ProductsController < ApplicationController
       name: params[:name],
       price: params[:price],
       description: params[:description],
-      image: params[:image],
       quantity: params[:quantity],
       category: params[:category],
       available: params[:available]
@@ -52,7 +51,6 @@ class ProductsController < ApplicationController
     product.name = params[:name]
     product.price = params[:price]
     product.description = params[:description]
-    product.image = params[:image]
     product.quantity = params[:quantity]
     product.category = params[:category]
     product.available = params[:available]
