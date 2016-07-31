@@ -7,18 +7,30 @@ class ProductsController < ApplicationController
     else
       @products = Product.all
     end
+
+    if params[:search]
+      @products = Product.search(params[:search])
+    else
+      @products = Product.all
+    end
+
     @random_product = @products.sample
   end
 
   def show
     @product = Product.find(params[:id])
-    @random_product = @product
+    @products = Product.all
+    @random_product = @products.sample
   end
 
   def new
   end
 
   def create
+    @product = Product.find(params[:id])
+    @products = Product.all
+    @random_product = @products.sample
+
     product = Product.new({
       name: params[:name],
       price: params[:price],
@@ -36,6 +48,11 @@ class ProductsController < ApplicationController
   end
 
   def update
+
+    @product = Product.find(params[:id])
+    @products = Product.all
+    @random_product = @products.sample
+
     @id = params[:id]
 
     product = Product.find(params[:id])
@@ -57,6 +74,10 @@ class ProductsController < ApplicationController
   def edit
     @id = params[:id]
     @product = Product.find(@id)
+
+    @product = Product.find(params[:id])
+    @products = Product.all
+    @random_product = @products.sample
   end
 
   def destroy
@@ -68,12 +89,16 @@ class ProductsController < ApplicationController
   end
 
   def search
+    @products = Product.all
+    @random_product = @products.sample
+
     if params[:search]
       @products = Product.search(params[:search])
       redirect_to '/products/search'
     else
       @products = Product.all
     end
+
   end
 
 end
