@@ -1,11 +1,18 @@
 class ProductsController < ApplicationController
 
   def index
-    @products = Product.all
+    sort_attribute = params[:sort_attribute]
+    if sort_attribute
+      @products = Product.order(sort_attribute)
+    else
+      @products = Product.all
+    end
+    @random_product = @products.sample
   end
 
   def show
     @product = Product.find(params[:id])
+    @random_product = @product
   end
 
   def new
@@ -58,6 +65,15 @@ class ProductsController < ApplicationController
     flash[:warning] = "Product Deleted!"
 
     redirect_to "/products/"
+  end
+
+  def search
+    if params[:search]
+      @products = Product.search(params[:search])
+      redirect_to '/products/search'
+    else
+      @products = Product.all
+    end
   end
 
 end
