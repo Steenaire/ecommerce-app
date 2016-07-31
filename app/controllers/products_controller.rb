@@ -24,41 +24,29 @@ class ProductsController < ApplicationController
   end
 
   def new
+    @product =  Product.new
   end
 
   def create
-    product = Product.new({
-      name: params[:name],
-      price: params[:price],
-      description: params[:description],
-      quantity: params[:quantity],
-      category: params[:category],
-      available: params[:available]
-      })
-    product.save
+    @product = Product.new(product_params)
 
-    flash[:success] = "Product Created!"
-
-    redirect_to "/products/#{product.id}"
+    if @product.save
+      flash[:success] = "Product Created!"
+      redirect_to "/products/#{@product.id}"
+    else
+      render 'new'
+    end
   end
 
   def update
-
-    @id = params[:id]
-
-    product = Product.find(params[:id])
-
-    product.name = params[:name]
-    product.price = params[:price]
-    product.description = params[:description]
-    product.quantity = params[:quantity]
-    product.category = params[:category]
-    product.available = params[:available]
-    product.save
-
-    flash[:success] = "Product Updated!"
-
-    redirect_to "/products/#{@id}"
+    @product = Product.find(params[:id])
+    Product.update(@product.id, product_params)
+    if @product.save
+      flash[:success] = "Product Updated!"
+      redirect_to "/products/#{@product.id}"
+    else
+      render 'edit'
+    end
   end
 
   def edit
@@ -78,5 +66,11 @@ class ProductsController < ApplicationController
     # @products = Product.where("name ILIKE ? OR description ILIKE ? OR category ILIKE ?", "%#{search}%", "%#{search}%", "%#{search}%") 
     # render :index
   end
+
+  private
+
+    def product_params
+      params.require(:product).permit(:name, :price, :description, :image, :quantity, :category, :supplier_id)
+    end
 
 end
