@@ -5,6 +5,9 @@ class ProductsController < ApplicationController
       @products = Product.order(price: params[:sort_attribute])
     elsif params[:search]
       @products = Product.search(params[:search])
+      if !@products.any?
+        flash[:warning] = "No products match your search"
+      end
     elsif params[:discount]
       @products = Product.where("price < ?", 15)
     else
