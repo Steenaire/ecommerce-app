@@ -65,8 +65,12 @@ class ProductsController < ApplicationController
   end
 
   def search
-    # @products = Product.where("name ILIKE ? OR description ILIKE ? OR category ILIKE ?", "%#{search}%", "%#{search}%", "%#{search}%") 
-    # render :index
+    if params[:search]
+      @products = Product.search(params[:search])
+      render :index
+    else
+      @products = Product.all
+    end
   end
 
   private

@@ -48,14 +48,12 @@
               </ul>
             </li>
           </ul>
-          <form class="navbar-form navbar-left">
-            <div class="form-group navbar-form navbar-left">
-              <%= form_tag('/products/search') do %>
-                <%= text_field_tag :search %>
-                <%= submit_tag "Search" %>
-              <% end %>
-            </div>
-          </form>
+          <div class="form-group navbar-form navbar-left">
+            <%= form_tag('/products/search') do %>
+              <%= text_field_tag :search %>
+              <%= submit_tag "Search" %>
+            <% end %>
+          </div>
           <ul class="nav navbar-nav navbar-right">
             <li><a href="/suppliers">Suppliers</a></li>
             <li class="dropdown">
