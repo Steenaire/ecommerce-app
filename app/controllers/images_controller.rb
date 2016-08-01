@@ -4,9 +4,9 @@ class ImagesController < ApplicationController
   end
 
   def create
-    image = Image.new({product_params})
+    image = Image.new({image_params})
     image.product_id = product.id
-    product.save
+    image.save
 
     flash[:success] = "Image Added!"
 
@@ -15,7 +15,7 @@ class ImagesController < ApplicationController
 
   private
 
-  def product_params
+  def image_params
     params.require(:image).permit(:url, :product_id)
   end
 

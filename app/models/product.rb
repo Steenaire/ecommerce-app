@@ -1,6 +1,7 @@
 class Product < ApplicationRecord
   belongs_to :supplier
   has_many :images
+  accepts_nested_attributes_for :images, :allow_destroy => true
 
   def sale_message
     if price < 2
