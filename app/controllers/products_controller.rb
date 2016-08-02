@@ -30,6 +30,7 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
+    @product.supplier_id = params[:supplier][:supplier_id]
 
     if @product.save
       flash[:success] = "Product Created!"
@@ -45,6 +46,7 @@ class ProductsController < ApplicationController
   def update
     @product = Product.find(params[:id])
     Product.update(@product.id, product_params)
+    @product.supplier_id = params[:supplier][:supplier_id]
     if @product.save
       flash[:success] = "Product Updated!"
       redirect_to "/products/#{@product.id}"

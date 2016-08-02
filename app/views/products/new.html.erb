@@ -30,10 +30,8 @@
       </div>
 
       <div class="form-group">
-        <%= f.label :supplier_id %>:
-        <%= f.text_field :supplier_id, class: "form-control" %><br />
-<!--         <%= f.label :supplier %>:
-        <%= collection_select :supplier, :supplier_id, Supplier.all, :id, :name %> -->
+         <%= f.label :supplier %>:
+        <%= collection_select :supplier, :supplier_id, Supplier.all, :id, :name %>
       </div>
 
       <div class="form-group">
