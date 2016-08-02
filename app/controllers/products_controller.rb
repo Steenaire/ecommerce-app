@@ -32,11 +32,10 @@ class ProductsController < ApplicationController
     @product = Product.new(product_params)
 
     if @product.save
-      # image = Image.new(product_id: @product.id, url: params[:url])
-      # image.save
       flash[:success] = "Product Created!"
       redirect_to "/products/#{@product.id}"
     else
+      flash[:notice] = "Product not created"
       puts "below"
       p @product.errors
       render 'new'
@@ -87,7 +86,7 @@ class ProductsController < ApplicationController
         :quantity,
         :category,
         :supplier_id,
-        # images_attributes: [:id, :url]
+        images_attributes: [:id, :url]
         )
     end
 
