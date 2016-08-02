@@ -59,12 +59,11 @@
 
 <h1>Add Images</h1>
 
-    <%= form_for @product do |f| %>
-
-      <div class="show">
-        <%= f.submit "Submit" %>
-      </div>
-    <% end %>
+<a href="/images/new">
+  <button class="show">
+  Add Image
+  </button>
+</a>
 
   <a href="/products/<%= @product.id %>">
   <button class="show">

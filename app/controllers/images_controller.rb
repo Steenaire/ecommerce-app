@@ -1,16 +1,16 @@
 class ImagesController < ApplicationController
 
   def new
+    @image = Image.new
   end
 
   def create
-    image = Image.new({image_params})
-    image.product_id = product.id
-    image.save
+    @image = Image.new(image_params)
+    @image.save
 
     flash[:success] = "Image Added!"
 
-    redirect_to "/products/#{product.id}"
+    redirect_to "/products/#{@image.product.id}"
   end
 
   private
