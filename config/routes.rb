@@ -20,5 +20,8 @@ Rails.application.routes.draw do
 
   get '/images/new', to: 'images#new', as: 'new_image'
   post '/images', to: 'images#create'
+
+  get 'signup', to: 'users#new'
+  post '/users', to: 'users#create'
  
 end
