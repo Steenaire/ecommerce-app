@@ -25,18 +25,20 @@ class ProductsController < ApplicationController
 
   def new
     @product =  Product.new
+    @product.images.build
   end
 
   def create
     @product = Product.new(product_params)
-    # image_url = params[:url]
 
     if @product.save
-      # image = Image.new(product_id: @product.id, url: image_url)
+      # image = Image.new(product_id: @product.id, url: params[:url])
       # image.save
       flash[:success] = "Product Created!"
       redirect_to "/products/#{@product.id}"
     else
+      puts "below"
+      p @product.errors
       render 'new'
     end
   end
@@ -77,7 +79,16 @@ class ProductsController < ApplicationController
   private
 
     def product_params
-      params.require(:product).permit(:name, :price, :description, :available, :quantity, :category, :supplier_id)
+      params.require(:product).permit(
+        :name,
+        :price,
+        :description,
+        :available,
+        :quantity,
+        :category,
+        :supplier_id,
+        # images_attributes: [:id, :url]
+        )
     end
 
 end

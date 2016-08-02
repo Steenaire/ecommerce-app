@@ -1,4 +1,4 @@
-<%= form_for @product do |f| %>
+<%= nested_form_for @product do |f| %>
       <div class="form-group">
         <%= f.label :name %>:
         <%= f.text_field :name, class: "form-control" %><br />
@@ -34,6 +34,13 @@
         <%= f.text_field :supplier_id, class: "form-control" %><br />
 <!--         <%= f.label :supplier %>:
         <%= collection_select :supplier, :supplier_id, Supplier.all, :id, :name %> -->
+      </div>
+
+      <div class="form-group">
+        <%= f.fields_for :images do |image| %>
+          <%= image.label :url %>
+          <%= image.text_field :url, class: "form-control" %><br />
+        <% end %>
       </div>
 
       <%= f.submit %>
