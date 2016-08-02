@@ -6,10 +6,12 @@
 
       <div class="form-group">
         <%= f.label :product_id %>:
-        <%= f.text_field :product_id, class: "form-control" %><br />
+        <%= f.text_field :product_id, value: @product_id, class: "form-control" %><br />
       </div>
 
       <div class="show">
         <%= f.submit %>
       </div>
 <% end %>
+
+<a href="/products/<%= @product_id %>">Back to Product</a>

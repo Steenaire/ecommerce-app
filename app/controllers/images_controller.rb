@@ -2,6 +2,7 @@ class ImagesController < ApplicationController
 
   def new
     @image = Image.new
+    @product_id = params[:product_id]
   end
 
   def create
