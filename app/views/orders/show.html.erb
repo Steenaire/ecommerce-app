@@ -1,0 +1,9 @@
+<div class="col-md-12 show">
+  <img src="<%= @order.product.images.first.url %>">
+  <p>Order Total: <%= number_to_currency(@order.total) %></p>
+  <p>Tax: <%= number_to_currency(@order.tax) %></p>
+  <p>Subtotal: <%= number_to_currency(@order.subtotal) %></p>
+  <p>Quantity: <%= @order.quantity %></p>
+  <p>Product Name: <%= @order.product.name %></p>
+  <p>Confirmation Email: <%= current_user.email %></p>
+</div>

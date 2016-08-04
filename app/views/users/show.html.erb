@@ -1,0 +1,7 @@
+<% if current_user %>
+  <h1><%= @user.name %>'s Profile Page</h1>
+  <p>Name: <%= @user.name %></p>
+  <p>Email: <%= @user.email %></p>
+<% else %>
+  <a href="/login"><h1>Log In</h1></a>
+<% end %>
