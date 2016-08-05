@@ -16,9 +16,15 @@
   <p>Total: <%= number_to_currency(@product.total) %></p>
   <p>Description: <%= @product.description %></p>
   <p>Quantity: <%= @product.quantity %></p>
-<!--   <p>Category: <%= @product.category %></p> -->
   <p>Supplier: <%= @product.supplier.name %></p>
   <p><%= @product.availability %></p>
+  <p>
+  <% @product.categories.each do |category| %>
+    <a href = "/products/?category_id=<%= category.id %>" >
+      <%= category.name %>
+    </a>
+  <% end %>
+  </p>
 </div>
 
 <div>
