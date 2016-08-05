@@ -10,6 +10,8 @@ class ProductsController < ApplicationController
       end
     elsif params[:discount]
       @products = Product.where("price < ?", 15)
+    elsif params[:category_id]
+      @products = Category.find_by(id: params[:category_id]).products
     else
       @products = Product.all
     end
@@ -33,6 +35,7 @@ class ProductsController < ApplicationController
     @product.supplier_id = params[:supplier][:supplier_id]
 
     if @product.save
+      # binding.pry
       flash[:success] = "Product Created!"
       redirect_to "/products/#{@product.id}"
     else

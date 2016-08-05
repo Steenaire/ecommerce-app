@@ -32,13 +32,13 @@ class OrdersController < ApplicationController
       redirect_to "/orders/#{order.id}"
     else
       flash[:notice] = "Order not processed"
-      render 'new'
+      render "/products/#{product.id}"
     end
 
   end
 
   def show
-    @order = Order.find(params[:id])
+    @order = Order.find_by(id: params[:id])
   end
 
 end

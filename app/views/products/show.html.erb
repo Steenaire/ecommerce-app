@@ -16,7 +16,7 @@
   <p>Total: <%= number_to_currency(@product.total) %></p>
   <p>Description: <%= @product.description %></p>
   <p>Quantity: <%= @product.quantity %></p>
-  <p>Category: <%= @product.category %></p>
+<!--   <p>Category: <%= @product.category %></p> -->
   <p>Supplier: <%= @product.supplier.name %></p>
   <p><%= @product.availability %></p>
 </div>
@@ -48,13 +48,13 @@
 <% end %>
 
 <br>
-<a href="/products">
-<button class="show">
-Back to All Products
-</button>
-</a>
 <a href="/products/<%= @product.id %>/edit">
 <button class="show">
 Edit This Product
+</button>
+</a>
+<a href="/products">
+<button class="show">
+Back to All Products
 </button>
 </a>

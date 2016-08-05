@@ -18,7 +18,10 @@
             Price: <%= number_to_currency(product.price) %></p>
             <p>Description: <%= product.description %></p>
             <p>Quantity: <%= product.quantity %></p>
-            <p>Category: <%= product.category %></p>
+            <p>Categories: <% product.categories. each do |category| %>
+                <%= category.name %>
+              <% end %>
+            </p>
         </div>
       </a>
     <% end %>
