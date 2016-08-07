@@ -1,9 +1,21 @@
 <table class = "table table-hover">
 <th>Product Name</th>
 <th>Quantity</th>
+<th>Remove?</th>
 <% @carted_products.each do |carted_product| %>
-  <tr>
-    <td><%= carted_product.product.name %></td>
-    <td><%= carted_product.quantity %></td>
-  </tr>
+  <% if !carted_product.order.complete %>
+    <tr>
+      <td><%= carted_product.product.name %></td>
+      <td><%= carted_product.quantity %></td>
+      <td>
+        <%= form_tag "/carted_products/#{carted_product.id}", method: :delete do %>
+          <%= submit_tag "Remove From Cart" %>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
 <% end %>
+</table>
+<p>Subtotal: <%= @carted_products.last.order.subtotal %></p>
+<p>Tax: <%= @carted_products.last.order.tax %>
+<p>Total: <%= @carted_products.last.order.total %></p>

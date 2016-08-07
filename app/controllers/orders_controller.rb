@@ -11,11 +11,9 @@ class OrdersController < ApplicationController
 
   def new
     order = Order.new
-    product = Product.find_by(id: params[:id])
   end
 
   def create
-    product = Product.find_by(id: params[:product_id])
     quantity = params[:quantity].to_i
     subtotal = 0
     tax = 0
@@ -23,10 +21,9 @@ class OrdersController < ApplicationController
     
     order = Order.new(
       quantity: quantity,
-      product_id: product.id,
-      user_id: current_user.id
-      subtotal: subtotal
-      tax: tax
+      user_id: current_user.id,
+      subtotal: subtotal,
+      tax: tax,
       total: total
       )
 
