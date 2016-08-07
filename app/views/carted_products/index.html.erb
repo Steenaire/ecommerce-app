@@ -1,0 +1,9 @@
+<table class = "table table-hover">
+<th>Product Name</th>
+<th>Quantity</th>
+<% @carted_products.each do |carted_product| %>
+  <tr>
+    <td><%= carted_product.product.name %></td>
+    <td><%= carted_product.quantity %></td>
+  </tr>
+<% end %>

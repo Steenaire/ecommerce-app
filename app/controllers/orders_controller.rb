@@ -17,14 +17,17 @@ class OrdersController < ApplicationController
   def create
     product = Product.find_by(id: params[:product_id])
     quantity = params[:quantity].to_i
+    subtotal = 0
+    tax = 0
+    total = 0
     
     order = Order.new(
       quantity: quantity,
       product_id: product.id,
-      user_id: current_user.id,
-      subtotal: (quantity*product.price),
-      tax: 0.08,
-      total: (quantity*product.price)*(1.08),
+      user_id: current_user.id
+      subtotal: subtotal
+      tax: tax
+      total: total
       )
 
     if order.save
@@ -40,5 +43,6 @@ class OrdersController < ApplicationController
   def show
     @order = Order.find_by(id: params[:id])
   end
+
 
 end
