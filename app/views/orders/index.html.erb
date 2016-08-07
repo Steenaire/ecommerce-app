@@ -8,13 +8,15 @@
     <% @orders.each do |order| %>
       <tr>
       <td>
-        <% order.products.each do |product| %>
-          <% if product == order.products.last %>
-            <%= product.name %>
-          <% else %>
-            <%= product.name %>,
+        <a href="/orders/<%= order.id %>">
+          <% order.products.each do |product| %>
+            <% if product == order.products.last %>
+              <%= product.name %>
+            <% else %>
+              <%= product.name %>,
+            <% end %>
           <% end %>
-        <% end %>
+        </a>
       </td>
       <td><a href="/orders/<%= order.id %>"><%= number_to_currency(order.total) %></a></td>
       <td><%= order.updated_friendly_time %></td>

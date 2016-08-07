@@ -2,7 +2,7 @@ class Product < ApplicationRecord
   belongs_to :supplier, optional: true
   has_many :orders
   has_many :images
-  
+
   has_many :categorized_products
   has_many :categories, through: :categorized_products
 
@@ -37,7 +37,7 @@ class Product < ApplicationRecord
   end
 
   def self.search(search)
-    where("lower(name) LIKE ? OR lower(description) ILIKE ? OR lower(category) ILIKE ?", "%#{search.downcase}%", "%#{search.downcase}%", "%#{search.downcase}%") 
+    where("lower(name) LIKE ? OR lower(description) ILIKE ?", "%#{search.downcase}%", "%#{search.downcase}%") 
   end
 
 end

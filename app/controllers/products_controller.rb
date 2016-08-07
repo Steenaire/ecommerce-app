@@ -89,7 +89,6 @@ class ProductsController < ApplicationController
         :description,
         :available,
         :quantity,
-        :category,
         :supplier_id,
         images_attributes: [:id, :url]
         )
