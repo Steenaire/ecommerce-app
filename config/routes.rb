@@ -34,6 +34,8 @@ Rails.application.routes.draw do
   post '/orders', to: 'orders#create'
   get '/orders/:id', to: 'orders#show', as: 'order'
   get '/orders', to: 'orders#index'
+  get '/orders/:id/edit', to: 'orders#edit', as: 'edit_order'
+  patch '/orders/:id', to: 'orders#update'
 
   get '/carted_products', to: 'carted_products#index'
   get '/carted_products/new', to: 'carted_products#new', as: 'new_carted_product'

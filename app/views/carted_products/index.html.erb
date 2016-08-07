@@ -1,21 +1,32 @@
+<h3>Shopping Cart</h3>
 <table class = "table table-hover">
 <th>Product Name</th>
+<th>Price</th>
 <th>Quantity</th>
 <th>Remove?</th>
 <% @carted_products.each do |carted_product| %>
-  <% if !carted_product.order.complete %>
-    <tr>
-      <td><%= carted_product.product.name %></td>
-      <td><%= carted_product.quantity %></td>
-      <td>
-        <%= form_tag "/carted_products/#{carted_product.id}", method: :delete do %>
-          <%= submit_tag "Remove From Cart" %>
-        <% end %>
-      </td>
-    </tr>
-  <% end %>
+  <tr>
+    <td><%= carted_product.product.name %></td>
+    <td><%= number_to_currency(carted_product.product.price) %></td>
+    <td><%= carted_product.quantity %></td>
+    <td>
+      <%= form_tag "/carted_products/#{carted_product.id}", method: :delete do %>
+        <%= submit_tag "Remove From Cart" %>
+      <% end %>
+    </td>
+  </tr>
 <% end %>
 </table>
 <p>Subtotal: <%= @carted_products.last.order.subtotal %></p>
 <p>Tax: <%= @carted_products.last.order.tax %>
 <p>Total: <%= @carted_products.last.order.total %></p>
+
+<%= form_tag "/orders/#{@order.id}", method: :patch do %>
+
+  <%= hidden_field_tag :order_id, value="#{@order.id}" %><br />
+
+  <div>
+    <%= submit_tag "Checkout" %>
+  </div>
+   
+<% end %>

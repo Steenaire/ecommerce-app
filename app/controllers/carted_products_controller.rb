@@ -1,7 +1,22 @@
 class CartedProductsController < ApplicationController
 
   def index
-    @carted_products = CartedProduct.all
+    orders = current_user.orders
+    open_order = nil
+
+    orders.each do |order|
+      if !order.complete
+        open_order = order
+      end
+    end
+
+    if open_order
+      @carted_products = open_order.carted_products
+      @order = open_order
+    else
+      redirect_to "/"
+    end
+
   end
 
   def new

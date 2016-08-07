@@ -41,5 +41,19 @@ class OrdersController < ApplicationController
     @order = Order.find_by(id: params[:id])
   end
 
+  def update
+    @order = Order.find(params[:order_id])
+    @order.complete = true
+    if @order.save
+      flash[:success] = "Checkout Complete!"
+      redirect_to "/products"
+    else
+      render 'edit'
+    end
+  end
+
+  def edit
+  end
+
 
 end
