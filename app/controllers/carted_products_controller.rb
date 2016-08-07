@@ -16,7 +16,7 @@ class CartedProductsController < ApplicationController
     end
 
     if !open_order || !@carted_products.first
-      flash[:notice] = "Shopping Cart is Empty"
+      flash[:warning] = "Shopping Cart is Empty"
       redirect_to "/"
     end
 
@@ -39,7 +39,7 @@ class CartedProductsController < ApplicationController
       flash[:success] = "Item added to cart!"
       redirect_to "/carted_products/"
     else
-      flash[:notice] = "Order not processed"
+      flash[:warning] = "Order not processed"
       render "/products/#{params[:product_id]}"
     end
   end
@@ -52,10 +52,10 @@ class CartedProductsController < ApplicationController
     order.tax -= ((carted_product.product.price*carted_product.quantity)*0.08)
     order.total -= ((carted_product.product.price*carted_product.quantity)*1.08)
     order.save
-    
+
     CartedProduct.find_by(id: params[:id]).destroy
 
-    flash[:warning] = "Item Removed from Shopping Cart!"
+    flash[:warning] = "#{carted_product.product.name} Removed from Shopping Cart"
 
     redirect_to "/carted_products/"
   end
