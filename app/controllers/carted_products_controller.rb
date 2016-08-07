@@ -15,7 +15,7 @@ class CartedProductsController < ApplicationController
       @order = open_order
     end
 
-    if !@carted_products.first
+    if !open_order || !@carted_products.first
       redirect_to "/"
     end
 
