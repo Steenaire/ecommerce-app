@@ -27,18 +27,9 @@ class CartedProductsController < ApplicationController
 
   def create
     @carted_product = CartedProduct.new(product_id: params[:product_id], quantity: params[:quantity])
+    order = current_user.orders.find_by(complete: false) || Order.create(user_id: current_user.id, complete: false, subtotal: 0, total: 0, tax: 0)
 
-    current_user.orders.each do |order|
-      if order.complete == false
-        @carted_product.order_id = order.id
-      end
-    end
-
-    if @carted_product.order_id == nil
-      new_order = Order.new(user_id: current_user.id, complete: false, subtotal: 0, total: 0, tax: 0)
-      new_order.save
-      @carted_product.order_id = new_order.id
-    end
+    @carted_product.order_id = order.id
 
     if @carted_product.save
       @carted_product.order.subtotal += (@carted_product.product.price*@carted_product.quantity)
