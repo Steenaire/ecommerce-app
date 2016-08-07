@@ -16,6 +16,7 @@ class CartedProductsController < ApplicationController
     end
 
     if !open_order || !@carted_products.first
+      flash[:notice] = "Shopping Cart is Empty"
       redirect_to "/"
     end
 
