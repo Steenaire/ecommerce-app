@@ -1,9 +1,23 @@
+<h3>Order Summary</h3>
 <div class="col-md-12 show">
-  <img src="<%= @order.product.images.first.url %>">
   <p>Order Total: <%= number_to_currency(@order.total) %></p>
   <p>Tax: <%= number_to_currency(@order.tax) %></p>
   <p>Subtotal: <%= number_to_currency(@order.subtotal) %></p>
-  <p>Quantity: <%= @order.quantity %></p>
-  <p>Product Name: <%= @order.product.name %></p>
   <p>Confirmation Email: <%= @order.user.email %></p>
 </div>
+
+<h3>Itemized Order</h3>
+<table class = "table table-hover">
+<th>Image</th>
+<th>Product Name</th>
+<th>Price</th>
+<th>Quantity</th>
+<% @order.carted_products.each do |carted_product| %>
+  <tr>
+    <td><img src="<%= carted_product.product.images.first.url %>"></td>
+    <td><%= carted_product.product.name %></td>
+    <td><%= number_to_currency(carted_product.product.price) %></td>
+    <td><%= carted_product.quantity %></td>
+  </tr>
+<% end %>
+</table>

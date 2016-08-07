@@ -26,16 +26,16 @@ class CartedProductsController < ApplicationController
   end
 
   def create
-    @carted_product = CartedProduct.new(product_id: params[:product_id], quantity: params[:quantity])
     order = current_user.orders.find_by(complete: false) || Order.create(user_id: current_user.id, complete: false, subtotal: 0, total: 0, tax: 0)
-
-    @carted_product.order_id = order.id
+    @carted_product = CartedProduct.new(product_id: params[:product_id], quantity: params[:quantity], order_id: order.id)
 
     if @carted_product.save
+
       @carted_product.order.subtotal += (@carted_product.product.price*@carted_product.quantity)
       @carted_product.order.tax += ((@carted_product.product.price*@carted_product.quantity)*0.08)
       @carted_product.order.total += ((@carted_product.product.price*@carted_product.quantity)*1.08)
       @carted_product.order.save
+
       flash[:success] = "Item added to cart!"
       redirect_to "/carted_products/"
     else
@@ -47,10 +47,12 @@ class CartedProductsController < ApplicationController
   def destroy
     order = CartedProduct.find_by(id: params[:id]).order
     carted_product = CartedProduct.find_by(id: params[:id])
+
     order.subtotal -= (carted_product.product.price*carted_product.quantity)
     order.tax -= ((carted_product.product.price*carted_product.quantity)*0.08)
     order.total -= ((carted_product.product.price*carted_product.quantity)*1.08)
     order.save
+    
     CartedProduct.find_by(id: params[:id]).destroy
 
     flash[:warning] = "Item Removed from Shopping Cart!"

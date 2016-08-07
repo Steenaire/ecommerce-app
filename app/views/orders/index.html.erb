@@ -16,7 +16,7 @@
           <% end %>
         <% end %>
       </td>
-      <td><%= number_to_currency(order.total) %></td>
+      <td><a href="/orders/<%= order.id %>"><%= number_to_currency(order.total) %></a></td>
       <td><%= order.updated_friendly_time %></td>
       <td><%= order.user.email %> </td>
       </tr>
