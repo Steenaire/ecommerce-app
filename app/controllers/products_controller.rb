@@ -41,9 +41,9 @@ class ProductsController < ApplicationController
       flash[:success] = "Product Created!"
       redirect_to "/products/#{@product.id}"
     else
-      flash[:notice] = "Product not created"
-      puts "below"
-      p @product.errors
+      flash[:warning] = "Product not created"
+      # puts "below"
+      # p @product.errors
       render 'new'
     end
   end

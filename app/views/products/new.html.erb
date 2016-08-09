@@ -1,3 +1,11 @@
+<% if @product && @product.errors.any? %>
+  <ul class = "error">
+    <% @product.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <%= nested_form_for @product do |f| %>
       <div class="form-group">
         <%= f.label :name %>:

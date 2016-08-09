@@ -11,6 +11,9 @@ class Product < ApplicationRecord
 
   accepts_nested_attributes_for :images, :allow_destroy => true
 
+  validates :name, presence: true
+  validates :quantity, numericality: { only_integer: true }
+
   def sale_message
     if price < 2
       return "Discount item!"
