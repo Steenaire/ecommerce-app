@@ -1,4 +1,11 @@
 <h1>Products</h1>
+<% if current_user && current_user.admin %>
+  <div class="container">
+    <a href="/products/new">
+      <button class="show">New Product</button>
+    </a>
+  </div>
+<% end %>
 <div class="container">
   <div class="row product-row">
     <% @products.each do |product| %>
@@ -26,10 +33,4 @@
       </a>
     <% end %>
   </div>
-</div>
-
-<div class="container">
-  <a href="/products/new">
-    <button class="show">New Product</button>
-  </a>
 </div>

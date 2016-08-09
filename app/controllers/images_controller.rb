@@ -6,12 +6,17 @@ class ImagesController < ApplicationController
   end
 
   def create
-    @image = Image.new(image_params)
-    @image.save
+    if current_user.admin  
+      @image = Image.new(image_params)
+      @image.save
 
-    flash[:success] = "Image Added!"
+      flash[:success] = "Image Added!"
 
-    redirect_to "/products/#{@image.product.id}"
+      redirect_to "/products/#{@image.product.id}"
+    else
+      flash[:danger] = "Action not permitted"
+      redirect_to "/"
+    end
   end
 
   private

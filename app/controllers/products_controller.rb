@@ -31,30 +31,41 @@ class ProductsController < ApplicationController
   end
 
   def create
-    @product = Product.new(product_params)
-    @product.supplier_id = params[:supplier][:supplier_id]
+    if current_user.admin
+      @product = Product.new(product_params)
+      @product.supplier_id = params[:supplier][:supplier_id]
 
-    if @product.save
-      # binding.pry
-      flash[:success] = "Product Created!"
-      redirect_to "/products/#{@product.id}"
+      if @product.save
+        # binding.pry
+        flash[:success] = "Product Created!"
+        redirect_to "/products/#{@product.id}"
+      else
+        flash[:notice] = "Product not created"
+        puts "below"
+        p @product.errors
+        render 'new'
+      end
+
     else
-      flash[:notice] = "Product not created"
-      puts "below"
-      p @product.errors
-      render 'new'
+      flash[:danger] = "Action not permitted"
+      redirect_to "/"
     end
   end
 
   def update
-    @product = Product.find(params[:id])
-    Product.update(@product.id, product_params)
-    @product.supplier_id = params[:supplier][:supplier_id]
-    if @product.save
-      flash[:success] = "Product Updated!"
-      redirect_to "/products/#{@product.id}"
+    if current_user.admin  
+      @product = Product.find(params[:id])
+      Product.update(@product.id, product_params)
+      @product.supplier_id = params[:supplier][:supplier_id]
+      if @product.save
+        flash[:success] = "Product Updated!"
+        redirect_to "/products/#{@product.id}"
+      else
+        render 'edit'
+      end
     else
-      render 'edit'
+      flash[:danger] = "Action not permitted"
+      redirect_to "/"
     end
   end
 
@@ -64,11 +75,16 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-    Product.find_by(id: params[:id]).destroy
+    if current_user.admin
+      Product.find_by(id: params[:id]).destroy
 
-    flash[:warning] = "Product Deleted!"
+      flash[:warning] = "Product Deleted!"
 
-    redirect_to "/products/"
+      redirect_to "/products/"
+    else
+      flash[:danger] = "Action not permitted"
+      redirect_to "/"
+    end
   end
 
   def search

@@ -28,21 +28,23 @@
 </div>
 
 <div>
-  <h1>Add To Cart</h1>
+  <% if current_user %>
+    <h1>Add To Cart</h1>
 
-  <%= form_tag '/carted_products', method: :post do %>
+    <%= form_tag '/carted_products', method: :post do %>
 
-    <div>
-      <%= label_tag :quantity %>
-      <%= text_field_tag :quantity %>
-    </div>
-    <div>
-      <%= hidden_field_tag :product_id, value="#{@product.id}" %><br />
-    </div>
-    <div>
-      <%= submit_tag "Add to Shopping Cart" %>
-    </div>
-   
+      <div>
+        <%= label_tag :quantity %>
+        <%= text_field_tag :quantity %>
+      </div>
+      <div>
+        <%= hidden_field_tag :product_id, value="#{@product.id}" %><br />
+      </div>
+      <div>
+        <%= submit_tag "Add to Shopping Cart" %>
+      </div>
+     
+    <% end %>
   <% end %>
 </div>
 
@@ -54,12 +56,23 @@
   <% end %>
 <% end %>
 
-<br>
-<a href="/products/<%= @product.id %>/edit">
-<button class="show">
-Edit This Product
-</button>
-</a>
+<% if current_user && current_user.admin %>
+  <a href="/images/new?product_id=<%= @product.id %>">
+    <button class="show">
+    Add Image
+    </button>
+  </a>
+<% end %>
+
+<% if current_user && current_user.admin %>
+  <br>
+  <a href="/products/<%= @product.id %>/edit">
+  <button class="show">
+  Edit This Product
+  </button>
+  </a>
+<% end %>
+
 <a href="/products">
 <button class="show">
 Back to All Products
