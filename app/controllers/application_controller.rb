@@ -9,5 +9,13 @@ class ApplicationController < ActionController::Base
   def updated_friendly_time
     updated_at.strftime("%B %e, %Y")
   end
+
+  def authenticate_admin!
+    if current_user && current_user.admin
+    else
+      flash[:warning] = "Action forbidden"
+      redirect_to "/"
+    end
+  end
   
 end

@@ -14,15 +14,13 @@ class OrdersController < ApplicationController
   end
 
   def update
-    if current_user
-      @order = Order.find(params[:order_id])
-      @order.complete = true
-      if @order.save
-        flash[:success] = "Checkout Complete!"
-        redirect_to "/orders/#{@order.id}"
-      else
-        render 'edit'
-      end
+    @order = Order.find(params[:order_id])
+    @order.complete = true
+    if @order.save
+      flash[:success] = "Checkout Complete!"
+      redirect_to "/orders/#{@order.id}"
+    else
+      render 'edit'
     end
   end
 
