@@ -42,7 +42,7 @@ class CartedProductsController < ApplicationController
       redirect_to "/carted_products/"
     else
       flash[:warning] = "Order not processed"
-      render "/products/#{params[:product_id]}"
+      redirect_to "/products/#{params[:product_id]}"
     end
   end
 

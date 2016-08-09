@@ -13,6 +13,7 @@ class Product < ApplicationRecord
 
   validates :name, presence: true
   validates :quantity, numericality: { only_integer: true }
+  validates :price, numericality: { greater_than: 0 }
 
   def sale_message
     if price < 2
