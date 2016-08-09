@@ -1,5 +1,7 @@
 class ImagesController < ApplicationController
 
+  before_action :authenticate_admin!
+
   def new
     @image = Image.new
     @product_id = params[:product_id]

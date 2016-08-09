@@ -11,10 +11,16 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate_admin!
-    if current_user && current_user.admin
-    else
+    unless current_user && current_user.admin
       flash[:warning] = "Action forbidden"
       redirect_to "/"
+    end
+  end
+
+  def authenticate_user!
+    unless current_user
+      flash[:warning] = "Please sign in first"
+      redirect_to "/login"
     end
   end
   

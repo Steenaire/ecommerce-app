@@ -1,12 +1,9 @@
 class OrdersController < ApplicationController
 
+  before_action :authenticate_user!
+
   def index
-    if current_user
-      @orders = Order.where(user_id: current_user.id)
-    else
-      flash[:danger] = "Log In To See Order History"
-      redirect_to "/login"
-    end
+    @orders = Order.where(user_id: current_user.id)
   end
 
   def show
