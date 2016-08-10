@@ -14,6 +14,7 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:order_id])
     @order.complete = true
     if @order.save
+      session[:cart_count] = nil
       flash[:success] = "Checkout Complete!"
       redirect_to "/orders/#{@order.id}"
     else

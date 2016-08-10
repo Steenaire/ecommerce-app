@@ -38,6 +38,8 @@ class CartedProductsController < ApplicationController
       @carted_product.order.total += ((@carted_product.product.price*@carted_product.quantity)*1.08)
       @carted_product.order.save
 
+      session[:cart_count] = nil
+
       flash[:success] = "Item added to cart!"
       redirect_to "/carted_products/"
     else
@@ -56,6 +58,8 @@ class CartedProductsController < ApplicationController
     order.save
 
     CartedProduct.find_by(id: params[:id]).destroy
+
+    session[:cart_count] = nil
 
     flash[:warning] = "#{carted_product.product.name} Removed from Shopping Cart"
 
