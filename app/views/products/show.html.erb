@@ -1,3 +1,18 @@
+<% if current_user.orders.any? %>
+  <% puts "It went into the first layer" %>
+  <% current_user.orders.last.carted_products.each do |carted_product| %>
+    <% puts "It went into the second layer" %>
+    <% if carted_product.errors.any? %>
+    <% puts "It went into the third layer" %>
+      <ul class = "error">
+      <% carted_product.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>
+
+
 <div class="col-md-12 show">
   <p><%= @product.sale_message %></p>
   <% if @product.images.any? %>

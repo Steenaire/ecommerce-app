@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  helper_method :current_user, :updated_friendly_time
+  helper_method :current_user, :updated_friendly_time, :calculate_cart_count
+  before_action :calculate_cart_count
 
   def current_user
     User.find_by(id: session[:user_id]) if session[:user_id]
@@ -21,6 +22,12 @@ class ApplicationController < ActionController::Base
     unless current_user
       flash[:warning] = "Please sign in first"
       redirect_to "/login"
+    end
+  end
+
+  def calculate_cart_count
+    if current_user && !current_user.orders.last.complete
+      return current_user.orders.last.carted_products.length
     end
   end
   
