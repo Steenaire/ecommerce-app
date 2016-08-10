@@ -26,8 +26,12 @@ class ApplicationController < ActionController::Base
   end
 
   def calculate_cart_count
-    if current_user && !current_user.orders.last.complete
-      return current_user.orders.last.carted_products.length
+    if current_user && !current_user.orders.last.complete && current_user.orders.last.carted_products.any?
+      cart_count = 0
+      current_user.orders.last.carted_products.each do |carted_product|
+        cart_count += carted_product.quantity
+      end
+      return cart_count
     end
   end
   
