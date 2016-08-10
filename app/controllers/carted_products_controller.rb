@@ -40,7 +40,7 @@ class CartedProductsController < ApplicationController
 
       session[:cart_count] = nil
 
-      flash[:success] = "Item added to cart!"
+      flash[:success] = "#{@carted_product.product.name} added to cart!"
       redirect_to "/carted_products/"
     else
       flash[:warning] = "Order not processed"
